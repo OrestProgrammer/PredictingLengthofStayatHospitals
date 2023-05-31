@@ -6,7 +6,7 @@ Code for training model is in the following Notebook [Model Training Notebook](m
 
 - data
   + LengthOfStay.csv - file with the data on what the model was trained
-- Notebook.ipynb - file where model is training
+- Train_notebook.ipynb - file where model is training
 - app.py - backend of the project
 - index.html - main page of the project, where you by specifying parameters can predict value
 - model.h5 - already trained and saved model
