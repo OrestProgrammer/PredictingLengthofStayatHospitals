@@ -2,9 +2,307 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <div class="form-container text-center mt-5 mb-5">
+        <div class="container">
+            <h2 class="test">Predict Length of Stay at Hospital</h2>
+            <form id="form">
+                <div class="form-group mt-4 d-flex flex-column align-items-center">
+                    <label for="rcount" class="h4">Number of readmissions within last 180 days</label>
+                    <div class="dist w-50">
+                        <select class="form-control" id="rcount">
+                            <option value="0" selected>0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Gender</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" value="0" id="flexRadio1">
+                            <label class="form-check-label" for="flexRadio1">
+                                Female
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender" value="1" id="flexRadio2">
+                            <label class="form-check-label" for="flexRadio2">
+                                Male
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Renal disease during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="dialysisrenalendstage" value="1" id="flexRadio3">
+                            <label class="form-check-label" for="flexRadio3">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="dialysisrenalendstage" value="0" id="flexRadio4">
+                            <label class="form-check-label" for="flexRadio4">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Asthma during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="asthma" value="1" id="flexRadio5">
+                            <label class="form-check-label" for="flexRadio5">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="asthma" value="0" id="flexRadio6">
+                            <label class="form-check-label" for="flexRadio6">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Iron deficiency during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="irondef" value="1" id="flexRadio7">
+                            <label class="form-check-label" for="flexRadio7">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="irondef" value="0" id="flexRadio8">
+                            <label class="form-check-label" for="flexRadio8">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Pneumonia during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pneum" value="1" id="flexRadio9">
+                            <label class="form-check-label" for="flexRadio9">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="pneum" value="0" id="flexRadio10">
+                            <label class="form-check-label" for="flexRadio10">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Substance dependence during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="substancedependence" value="1" id="flexRadio11">
+                            <label class="form-check-label" for="flexRadio11">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="substancedependence" value="0" id="flexRadio12">
+                            <label class="form-check-label" for="flexRadio12">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Major psychological disorder during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="psychologicaldisordermajor" value="1" id="flexRadio13">
+                            <label class="form-check-label" for="flexRadio13">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="psychologicaldisordermajor" value="0" id="flexRadio14">
+                            <label class="form-check-label" for="flexRadio14">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Depression during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="depress" value="1" id="flexRadio15">
+                            <label class="form-check-label" for="flexRadio15">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="depress" value="0" id="flexRadio16">
+                            <label class="form-check-label" for="flexRadio16">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Other psychological disorder during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="psychother" value="1" id="flexRadio17">
+                            <label class="form-check-label" for="flexRadio17">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="psychother" value="0" id="flexRadio18">
+                            <label class="form-check-label" for="flexRadio18">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Fibrosis during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="fibrosisandother" value="1" id="flexRadio19">
+                            <label class="form-check-label" for="flexRadio19">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="fibrosisandother" value="0" id="flexRadio20">
+                            <label class="form-check-label" for="flexRadio20">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Malnutrituion during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="malnutrition" value="1" id="flexRadio21">
+                            <label class="form-check-label" for="flexRadio21">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="malnutrition" value="0" id="flexRadio22">
+                            <label class="form-check-label" for="flexRadio22">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Blood disorder during encounter</p>
+                    <div class="d-flex flex-row justify-content-around w-50">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="hemo" value="1" id="flexRadio23">
+                            <label class="form-check-label" for="flexRadio23">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="hemo" value="0" id="flexRadio24">
+                            <label class="form-check-label" for="flexRadio24">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Average hematocrit value during encounter (g/dL)r</p>
+                    <input type="text" class="form-control w-50" id="hematocrit" placeholder="Hematocrit">
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Average neutrophils value during encounter (cells/microL)</p>
+                    <input type="text" class="form-control w-50" id="neutrophils" placeholder="Neutrophils">
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Average sodium value during encounter (mmol/L)</p>
+                    <input type="text" class="form-control w-50" id="sodium" placeholder="Sodium">
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Average glucose value during encounter (mmol/L)</p>
+                    <input type="text" class="form-control w-50" id="glucose" placeholder="Glucose">
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Average blood urea nitrogen value during encounter (mg/dL)</p>
+                    <input type="text" class="form-control w-50" id="bloodureanitro" placeholder="Blood urea nitrogen">
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Average creatinine value during encounter (mg/dL)</p>
+                    <input type="text" class="form-control w-50" id="creatinine" placeholder="Creatinine">
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Average BMI during encounter (kg/m2)</p>
+                    <input type="text" class="form-control w-50" id="bmi" placeholder="BMI">
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Average pulse during encounter (beats/m)</p>
+                    <input type="text" class="form-control w-50" id="pulse" placeholder="Pulse">
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Average respiration during encounter (breaths/m)</p>
+                    <input type="text" class="form-control w-50" id="respiration" placeholder="Respiration">
+                </div>
+
+                <div class="form-group mt-4 d-flex flex-column align-items-center mt-4">
+                    <p class="h4">Whether a non ICD 9 formatted diagnosis was coded as a secondary diagnosis</p>
+                    <input type="number" min="0" max="10" class="form-control w-25" id="secondarydiagnosisnonicd9" placeholder="Secondary diagnosis">
+                </div>
+
+                <p id="result"></p>
+
+                <button type="button" id="form-button" class="btn btn-primary">Count</button>
+
+            </form>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
